@@ -69,7 +69,7 @@ public class CarService {
     }
 
     public void addCarToCustomer(String customerName, Integer carId) {
-        Optional<CustomerEntity> optionalCustomer = customerRepository.findByFirstName(customerName);
+        Optional<CustomerEntity> optionalCustomer = customerRepository.findByName(customerName);
         if (optionalCustomer.isEmpty()) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Customer not found");
         }

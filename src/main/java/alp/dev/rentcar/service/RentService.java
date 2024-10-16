@@ -2,12 +2,13 @@ package alp.dev.rentcar.service;
 
 import alp.dev.rentcar.entity.CarEntity;
 import alp.dev.rentcar.entity.CustomerEntity;
-import alp.dev.rentcar.entity.MerchantEntity;
 import alp.dev.rentcar.repository.CarRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -36,6 +37,17 @@ public class RentService {
         CarEntity carEntity = car.get();
         carEntity.setCustomer(null);
         carRepository.save(carEntity);
+    }
+
+    public List<CarEntity> getAllRentedMerchantCars() {
+        List<CarEntity> allCars = carService.getAllCars();
+        List<CarEntity> rentedCars = new ArrayList<CarEntity>();
+        for (CarEntity carEntity : allCars) {
+            if (carEntity.getCustomer() != null) {
+                rentedCars.add(carEntity);
+            }
+        }
+        return rentedCars;
     }
 
 }

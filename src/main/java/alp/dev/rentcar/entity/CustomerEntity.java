@@ -16,16 +16,16 @@ public class CustomerEntity {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
-    @Column(name = "first Name")
-    private String firstName;
-
-    @Column(name = "last Name")
-    private String lastName;
+    @Column(name = "name")
+    private String name;
 
     @Column(name = "email")
     private String email;
 
     @Column(name = "phone")
     private Integer phone;
+
+    @Column(name = "password")
+    private String password;
 
 }
