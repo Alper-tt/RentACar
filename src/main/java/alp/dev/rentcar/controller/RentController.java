@@ -21,7 +21,7 @@ public class RentController {
     }
 
     @PostMapping("/start")
-    public ResponseEntity<String> addRent(@RequestParam Integer merchantId, Integer customerId, Integer carId){
+    public ResponseEntity<String> addRent(@RequestParam Integer customerId, Integer carId){
         rentService.rentMerchantCarToCustomer(customerId, carId);
         return ResponseEntity.ok("car rented successfully");
     }

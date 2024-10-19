@@ -26,13 +26,6 @@ public class MerchantController {
         return ResponseEntity.ok("Car added to merchant successfully");
     }
 
-    //@GetMapping("/merchantCars")
-    //public ResponseEntity<List<CarEntity>> getMerchantCarsByMerchantId(@RequestParam Integer id) {
-    //    Optional<List<CarEntity>> cars = merchantService.getMerchantCarsById(id);
-    //    return cars.map(ResponseEntity::ok)
-    //            .orElseGet(() -> ResponseEntity.notFound().build());
-    //}
-
     @GetMapping("/{merchantId}/cars")
     public MerchantCarListResponse getMerchantCars(@PathVariable Integer merchantId) {
         return carService.getCarsByMerchantId(merchantId);
@@ -44,11 +37,6 @@ public class MerchantController {
         return ResponseEntity.ok("created");
     }
 
-   //@GetMapping
-   // public MerchantEntity getMerchantByName(@RequestParam String name) {
-   //     return merchantService.getMerchantByName(name);
-   // }
-
     @GetMapping
     public List<MerchantEntity> getAllMerchants() {
         return merchantService.getMerchants();
@@ -59,14 +47,4 @@ public class MerchantController {
         merchantService.deleteByName(name);
         return ResponseEntity.ok("deleted by name");
     }
-
-
-    //@DeleteMapping
-    //public ResponseEntity<String> deleteMerchantById(@RequestParam Integer id) {
-    //    merchantService.deleteById(id);
-    //    return ResponseEntity.ok("deleted by id");
-    //}
-
-
-
 }

@@ -44,14 +44,7 @@ public class TokenUtils {
                     .parseClaimsJws(token);
             return true;
         } catch (Exception e) {
-            return false; // Token geçersiz veya süresi dolmuş
+            return false;
         }
     }
-
-    public Claims getClaimsFromToken(String token) {
-        return Jwts.parser().setSigningKey(secret.getBytes(StandardCharsets.UTF_8)).parseClaimsJws(token).getBody();
-    }
-
-
-
 }

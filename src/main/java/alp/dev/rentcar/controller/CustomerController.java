@@ -2,9 +2,7 @@ package alp.dev.rentcar.controller;
 
 
 import alp.dev.rentcar.entity.CustomerEntity;
-import alp.dev.rentcar.model.request.LoginRequest;
 import alp.dev.rentcar.model.response.CustomerCarListResponse;
-import alp.dev.rentcar.model.response.JwtResponse;
 import alp.dev.rentcar.service.CarService;
 import alp.dev.rentcar.service.CustomerService;
 import lombok.RequiredArgsConstructor;

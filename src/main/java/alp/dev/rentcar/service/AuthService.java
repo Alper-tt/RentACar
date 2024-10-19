@@ -4,10 +4,7 @@ import alp.dev.rentcar.entity.CustomerEntity;
 import alp.dev.rentcar.model.request.LoginRequest;
 import alp.dev.rentcar.repository.CustomerRepository;
 import alp.dev.rentcar.utils.TokenUtils;
-import io.jsonwebtoken.Claims;
-import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -37,11 +34,4 @@ public class AuthService {
         System.out.println("null");
         return null;
     }
-
-    public Authentication getUserAuthentication(HttpServletRequest httpServletRequest){
-        String jwt = httpServletRequest.getHeader("Authorization");
-        Claims claims = tokenUtils.getClaimsFromToken(jwt);
-        return null;
-    }
-
 }

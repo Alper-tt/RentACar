@@ -9,18 +9,18 @@ public class SimpleAuthenticationToken extends AbstractAuthenticationToken {
     private final Integer userId;
 
     public SimpleAuthenticationToken(Integer userId) {
-        super(Collections.emptyList());  // Yetki listesi boş bırakılıyor.
+        super(Collections.emptyList());
         this.userId = userId;
-        setAuthenticated(true);  // Token doğrulandıysa, authenticated olarak işaretlenir.
+        setAuthenticated(true);
     }
 
     @Override
     public Object getCredentials() {
-        return null;  // JWT'de parola taşınmadığı için null döndürülüyor.
+        return null;
     }
 
     @Override
     public Object getPrincipal() {
-        return userId;  // Kullanıcının kimliği (userId) principal olarak döndürülür.
+        return userId;
     }
 }

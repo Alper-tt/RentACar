@@ -1,6 +1,5 @@
 package alp.dev.rentcar.service;
 
-import alp.dev.rentcar.entity.CarEntity;
 import alp.dev.rentcar.entity.MerchantEntity;
 import alp.dev.rentcar.repository.MerchantRepository;
 import jakarta.transaction.Transactional;
@@ -27,10 +26,6 @@ public class MerchantService {
         merchantRepository.save(merchant);
     }
 
-    //public void deleteById(Integer id) {
-    //        merchantRepository.deleteById(id);
-    //}
-
     public void deleteByName(String name) {
         merchantRepository.removeByName(name);
     }
@@ -43,14 +38,7 @@ public class MerchantService {
         return merchantRepository.findById(id);
     }
 
-
     public List<MerchantEntity> getMerchants() {
         return merchantRepository.findAll();
     }
-
-    //public Optional<List<CarEntity>> getMerchantCarsById(Integer id) {
-    //    Optional<MerchantEntity> merchant = merchantRepository.findById(id);
-    //    return merchant.map(MerchantEntity::getCars);
-    //}
-
 }

@@ -3,8 +3,6 @@ package alp.dev.rentcar.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.util.List;
-
 @Getter
 @Setter
 @Builder
@@ -22,8 +20,4 @@ public class MerchantEntity {
 
     @Column(name = "email")
     private String email;
-
-    //@OneToMany(mappedBy = "merchant", cascade = CascadeType.ALL)
-    //private List<CarEntity> cars;
-
 }
