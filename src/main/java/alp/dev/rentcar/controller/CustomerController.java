@@ -26,16 +26,6 @@ public class CustomerController {
         return customerService.findAll();
     }
 
-    @PostMapping("/login")
-    public ResponseEntity<?> login(@RequestBody LoginRequest loginRequest){
-        boolean isAuthenticated = customerService.authenticate(loginRequest.getUsername(), loginRequest.getPassword());
-        if(!isAuthenticated){
-            return ResponseEntity.status(404).body("Invalid username or password");
-        }
-        String token = customerService.generateToken(loginRequest.getUsername());
-        return ResponseEntity.ok(new JwtResponse(token));
-    }
-
     @PostMapping("/add")
     public ResponseEntity<String> create(@RequestParam String name, @RequestParam String email, @RequestParam Integer phone, @RequestParam String password) {
         customerService.create(name, email, phone, password);
