@@ -41,7 +41,7 @@ public class AuthService {
     public Authentication getUserAuthentication(HttpServletRequest httpServletRequest){
         String jwt = httpServletRequest.getHeader("Authorization");
         Claims claims = tokenUtils.getClaimsFromToken(jwt);
-        return ?;
+        return null;
     }
 
 }
