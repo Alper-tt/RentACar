@@ -14,12 +14,12 @@ public class AuthController {
 
     @PostMapping("/register")
     public void register(@RequestBody LoginRequest loginRequest){
-        authService.registerCustomer(loginRequest);
+        authService.register(loginRequest);
     }
 
 
     @PostMapping("/login")
     public String login(@RequestBody LoginRequest loginRequest){
-        return authService.loginCustomer(loginRequest);
+        return authService.login(loginRequest);
     }
 }

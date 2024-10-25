@@ -9,4 +9,5 @@ import java.util.Optional;
 public interface MerchantRepository extends JpaRepository<MerchantEntity, Integer> {
     Optional<MerchantEntity> findByName(String name);
     void removeByName(String name);
+    Optional<MerchantEntity> findByEmail(String email);
 }

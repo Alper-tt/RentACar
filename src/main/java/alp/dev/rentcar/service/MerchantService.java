@@ -1,5 +1,6 @@
 package alp.dev.rentcar.service;
 
+import alp.dev.rentcar.Roles.UserRole;
 import alp.dev.rentcar.entity.MerchantEntity;
 import alp.dev.rentcar.repository.MerchantRepository;
 import jakarta.transaction.Transactional;
@@ -21,6 +22,7 @@ public class MerchantService {
         MerchantEntity merchant = MerchantEntity.builder()
                 .name(name)
                 .email(email)
+                .userRole(UserRole.MERCHANT)
                 .build();
 
         merchantRepository.save(merchant);

@@ -1,5 +1,6 @@
 package alp.dev.rentcar.entity;
 
+import alp.dev.rentcar.Roles.UserRole;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -20,4 +21,12 @@ public class MerchantEntity {
 
     @Column(name = "email")
     private String email;
+
+    @Column(name = "userRole")
+    @Enumerated(EnumType.STRING)
+    private UserRole userRole;
+
+
+    @Column(name = "password")
+    private String password;
 }

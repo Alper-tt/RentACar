@@ -17,8 +17,8 @@ public class TokenUtils {
     @Value("${jwt.secret}")
     private String secret;
 
-    public String createToken(Integer id) {
-        Map<String, Object> claims = Map.of("userId", id);
+    public String createToken(Integer id, String userRole) {
+        Map<String, Object> claims = Map.of("userId", id, "userRole", userRole);
         String token = Jwts.builder()
                 .addClaims(claims)
                 .setExpiration(new Date(System. currentTimeMillis() + 3600000))
@@ -34,6 +34,16 @@ public class TokenUtils {
                 .parseClaimsJws(token)
                 .getBody();
         return (Integer) claims.get("userId");
+    }
+
+    public String getUserRoleFromToken(String token) {
+        Claims claims = Jwts.parserBuilder()
+                .setSigningKey(Keys.hmacShaKeyFor(secret.getBytes(StandardCharsets.UTF_8)))
+                .build()
+                .parseClaimsJws(token)
+                .getBody();
+        System.out.println(claims.get("userRole"));
+        return (String) claims.get("userRole");
     }
 
     public boolean validateToken(String token) {

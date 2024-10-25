@@ -1,6 +1,7 @@
 package alp.dev.rentcar.service;
 
 
+import alp.dev.rentcar.Roles.UserRole;
 import alp.dev.rentcar.entity.CustomerEntity;
 import alp.dev.rentcar.repository.CustomerRepository;
 import lombok.RequiredArgsConstructor;
@@ -20,6 +21,7 @@ public class CustomerService {
                 .email(email)
                 .phone(phone)
                 .password(password)
+                .userRole(UserRole.CUSTOMER)
                 .build();
         customerRepository.save(customer);
     }
