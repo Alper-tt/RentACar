@@ -26,13 +26,13 @@ public class RentController {
     @PreAuthorize("hasAnyRole('MERCHANT', 'CUSTOMER')")
     public ResponseEntity<String> addRent(@RequestParam Integer customerId, Integer carId){
         rentService.rentMerchantCarToCustomer(customerId, carId);
-        return ResponseEntity.ok("car rented successfully");
+        return ResponseEntity.ok("Car rented successfully");
     }
 
     @DeleteMapping("/finish")
     @PreAuthorize("hasAnyRole('MERCHANT', 'CUSTOMER')")
     public ResponseEntity<String> finishRent(@RequestParam Integer customerId, @RequestParam Integer carId){
         rentService.rentFinishedMerchantCarToCustomer(customerId, carId);
-        return ResponseEntity.ok("rent finished");
+        return ResponseEntity.ok("Rent finished");
     }
 }

@@ -14,12 +14,18 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/merchants")
+@RequestMapping("/merchant")
 public class MerchantController {
 
     private final MerchantService merchantService;
 
     private final CarService carService;
+
+    @GetMapping
+    @PreAuthorize("hasRole('MERCHANT')")
+    public List<MerchantEntity> getAllMerchants() {
+        return merchantService.getMerchants();
+    }
 
     @PostMapping("/addCar")
     @PreAuthorize("hasRole('MERCHANT')")
@@ -29,25 +35,19 @@ public class MerchantController {
     }
 
     @GetMapping("/{merchantId}/cars")
-    @PreAuthorize("hasRole('MERCHANT')")
+    @PreAuthorize("#merchantId  == authentication.getPrincipal()")
     public MerchantCarListResponse getMerchantCars(@PathVariable Integer merchantId) {
         return carService.getCarsByMerchantId(merchantId);
     }
 
-    @PostMapping
-    @PreAuthorize("hasRole('MERCHANT')")
-    public ResponseEntity<String> create(@RequestParam String name, @RequestParam String email) {
-        merchantService.create(name, email);
-        return ResponseEntity.ok("created");
-    }
+    //@PostMapping("/create")
+    //@PreAuthorize("hasRole('MERCHANT')")
+    //public ResponseEntity<String> create(@RequestParam String name, @RequestParam String email) {
+    //    merchantService.create(name, email);
+    //    return ResponseEntity.ok("created");
+    //}
 
-    @GetMapping
-    @PreAuthorize("hasRole('MERCHANT')")
-    public List<MerchantEntity> getAllMerchants() {
-        return merchantService.getMerchants();
-    }
-
-    @DeleteMapping
+    @DeleteMapping("/delete")
     @PreAuthorize("hasRole('MERCHANT')")
     public ResponseEntity<String> deleteByName(@RequestParam String name) {
         merchantService.deleteByName(name);

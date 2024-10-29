@@ -1,7 +1,4 @@
-package alp.dev.rentcar.utils;// JwtRequestFilter.java
-
-import alp.dev.rentcar.Roles.UserRole;
-import alp.dev.rentcar.model.SimpleAuthenticationToken;
+package alp.dev.rentcar.utils;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -38,14 +35,11 @@ public class JwtRequestFilter extends OncePerRequestFilter {
             Integer userId = tokenUtils.getUserIdFromToken(jwtToken);
             String userRole = tokenUtils.getUserRoleFromToken(jwtToken);
 
-            // Kullanıcı rolünü GrantedAuthority listesiyle ayarlayın
             List<GrantedAuthority> authorities = List.of(new SimpleGrantedAuthority("ROLE_" + userRole));
 
-            // UsernamePasswordAuthenticationToken ile kimlik doğrulama nesnesi oluşturun
             UsernamePasswordAuthenticationToken authenticationToken =
                     new UsernamePasswordAuthenticationToken(userId, null, authorities);
 
-            // Güvenlik bağlamına kimlik doğrulama nesnesini ayarlayın
             SecurityContextHolder.getContext().setAuthentication(authenticationToken);
         }
 

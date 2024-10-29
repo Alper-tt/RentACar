@@ -19,12 +19,11 @@ public class TokenUtils {
 
     public String createToken(Integer id, String userRole) {
         Map<String, Object> claims = Map.of("userId", id, "userRole", userRole);
-        String token = Jwts.builder()
+        return Jwts.builder()
                 .addClaims(claims)
                 .setExpiration(new Date(System. currentTimeMillis() + 3600000))
                 .signWith(Keys.hmacShaKeyFor(secret.getBytes(StandardCharsets.UTF_8)), SignatureAlgorithm.HS256)
                 .compact();
-        return token;
     }
 
     public Integer getUserIdFromToken(String token) {

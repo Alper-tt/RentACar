@@ -26,12 +26,12 @@ public class CustomerController {
         return customerService.findAll();
     }
 
-    @PostMapping("/add")
-    @PreAuthorize("hasRole('MERCHANT')")
-    public ResponseEntity<String> create(@RequestParam String name, @RequestParam String email, @RequestParam Integer phone, @RequestParam String password) {
-        customerService.create(name, email, phone, password);
-        return ResponseEntity.ok("Customer created");
-    }
+    //@PostMapping("/create")
+    //@PreAuthorize("hasRole('MERCHANT')")
+    //public ResponseEntity<String> create(@RequestParam String name, @RequestParam String email, @RequestParam Integer phone, @RequestParam String password) {
+    //    customerService.create(name, email, phone, password);
+    //    return ResponseEntity.ok("Customer created");
+    //}
 
     @DeleteMapping("/delete")
     @PreAuthorize("hasRole('MERCHANT')")
@@ -41,8 +41,8 @@ public class CustomerController {
     }
 
     @GetMapping("/{customerId}/cars")
-    @PreAuthorize("hasRole('MERCHANT') or #customerId == authentication.getPrincipal()d")
-    public CustomerCarListResponse getMerchantCars(@PathVariable Integer customerId) {
+    @PreAuthorize("hasRole('MERCHANT') or #customerId == authentication.getPrincipal()")
+    public CustomerCarListResponse getCustomerCars(@PathVariable Integer customerId) {
         return carService.getCarsByCustomerId(customerId);
     }
 }

@@ -27,6 +27,7 @@ public class AuthService {
         if (userRole == UserRole.CUSTOMER) {
             customerRepository.save(
                     CustomerEntity.builder()
+                            .name(loginRequest.getUsername())
                             .email(loginRequest.getEmail())
                             .password(passwordEncoder.encode(loginRequest.getPassword()))
                             .userRole(userRole)
@@ -34,6 +35,7 @@ public class AuthService {
         } else if (userRole == UserRole.MERCHANT) {
             merchantRepository.save(
                     MerchantEntity.builder()
+                            .name(loginRequest.getUsername())
                             .email(loginRequest.getEmail())
                             .password(passwordEncoder.encode(loginRequest.getPassword()))
                             .userRole(userRole)

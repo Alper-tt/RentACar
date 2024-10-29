@@ -4,15 +4,14 @@ import org.springframework.security.authentication.AbstractAuthenticationToken;
 
 import java.util.Collections;
 
+// Bu sınıfı kullanmak yerine JwtRequestFilter sınıfına "org.springframework.security.core.GrantedAuthority" import edildi.
 public class SimpleAuthenticationToken extends AbstractAuthenticationToken {
 
     private final Integer userId;
-    private final String userRole;
 
     public SimpleAuthenticationToken(Integer userId, String userRole) {
         super(Collections.emptyList());
         this.userId = userId;
-        this.userRole = userRole;
         setAuthenticated(true);
     }
 
@@ -23,6 +22,6 @@ public class SimpleAuthenticationToken extends AbstractAuthenticationToken {
 
     @Override
     public Object getPrincipal() {
-        return userId; //userRole eklenmeli
+        return userId;
     }
 }
